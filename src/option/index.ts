@@ -70,7 +70,7 @@ export interface Some<T> extends Option<T> {
 
 export interface None extends Option<never> {
   type: 'none'
-  get(): undefined
+  get(): never
 }
 
 
@@ -127,7 +127,7 @@ function makeNone() {
   function returnNone() { return None }
 
   self.type = 'none'
-  self.get = () => undefined
+  self.get = () => { throw Error("None"); }
   self.isDefined = () => false
   self.forEach = () => {}
   self.map = returnNone
